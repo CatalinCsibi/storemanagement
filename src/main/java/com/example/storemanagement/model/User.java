@@ -1,11 +1,16 @@
 package com.example.storemanagement.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
 import java.util.Collection;
 
 @Data
@@ -23,6 +28,8 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
