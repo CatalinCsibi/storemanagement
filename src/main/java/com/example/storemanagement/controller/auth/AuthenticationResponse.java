@@ -1,4 +1,4 @@
-package com.example.storemanagement.auth;
+package com.example.storemanagement.controller.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class AuthenticationResponse {
 
-    private String email;
-    String password;
+    private String token;
+
 }

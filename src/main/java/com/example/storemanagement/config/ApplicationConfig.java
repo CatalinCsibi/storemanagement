@@ -1,7 +1,7 @@
 package com.example.storemanagement.config;
 
-import com.example.storemanagement.model.Role;
-import com.example.storemanagement.model.User;
+import com.example.storemanagement.model.user.Role;
+import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

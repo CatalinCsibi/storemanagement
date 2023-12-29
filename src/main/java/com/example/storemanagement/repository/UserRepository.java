@@ -1,8 +1,7 @@
 package com.example.storemanagement.repository;
 
-import com.example.storemanagement.model.User;
+import com.example.storemanagement.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.example.storemanagement.auth;
+package com.example.storemanagement.controller.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
-package com.example.storemanagement.model;
+package com.example.storemanagement.model.user;
 
+import com.example.storemanagement.model.user.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

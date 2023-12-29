@@ -1,8 +1,8 @@
-package com.example.storemanagement.auth;
+package com.example.storemanagement.controller.auth;
 
 import com.example.storemanagement.config.JwtService;
-import com.example.storemanagement.model.Role;
-import com.example.storemanagement.model.User;
+import com.example.storemanagement.model.user.Role;
+import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
