@@ -1,7 +1,10 @@
 package com.example.storemanagement.config;
 
+import com.example.storemanagement.model.Role;
+import com.example.storemanagement.model.User;
 import com.example.storemanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,6 +44,17 @@ public class ApplicationConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+
+    // Added this so we can have an Admin user when starting the application
+    @Bean
+    CommandLineRunner run(UserRepository userRepository) {
+        return args -> {
+            userRepository.save(new User(1, "James", "Last",
+                    "james@mail.com", passwordEncoder().encode("password"), Role.ADMIN));
+
+        };
     }
 
 }

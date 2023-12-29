@@ -29,6 +29,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authz -> authz
                                 .requestMatchers("/api/auth/**")
                                 .permitAll()
+                                .requestMatchers("/api/product/findAll")
+                                .hasAnyAuthority("USER", "ADMIN")
+                                .requestMatchers("/api/product/add", "/api/product/delete")
+                                .hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                                 )

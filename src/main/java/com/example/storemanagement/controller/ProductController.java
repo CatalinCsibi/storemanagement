@@ -18,18 +18,18 @@ public class ProductController {
     private final ProductService productService;
 
 
-    @PostMapping("/addProduct")
+    @PostMapping("/add")
     public ResponseEntity<ProductDto> addProduct(@RequestBody Product entity) {
         var productDto = productService.addProduct(entity);
         return new ResponseEntity<>(productDto, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findAllProducts")
+    @GetMapping("/findAll")
     public ResponseEntity<List<ProductDto>> findAllProducts() {
         return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteProduct/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("name") String name) {
         productService.deleteProduct(name);
         return new ResponseEntity<>(HttpStatus.OK);
