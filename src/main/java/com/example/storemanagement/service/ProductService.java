@@ -2,6 +2,7 @@ package com.example.storemanagement.service;
 
 import com.example.storemanagement.dto.ProductDto;
 import com.example.storemanagement.exception.ProductAlreadyRegisteredException;
+import com.example.storemanagement.exception.ProductNotRegisteredException;
 import com.example.storemanagement.mapper.ProductMapper;
 import com.example.storemanagement.model.Product;
 import com.example.storemanagement.repository.ProductRepository;
@@ -39,6 +40,16 @@ public class ProductService {
         return products.stream()
                 .map(productMapper::productToProductDto)
                 .collect(Collectors.toList());
+    }
+
+    public void deleteProduct(String name) {
+        productRepository.findByName(name).ifPresentOrElse(
+                productRepository::delete,
+                () ->
+                {
+                    throw new ProductNotRegisteredException("Product with name %s, is not registered in our database", name);
+                }
+        );
     }
 
 

@@ -28,4 +28,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> findAllProducts() {
         return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteProduct/{name}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable("name") String name) {
+        productService.deleteProduct(name);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
 }
