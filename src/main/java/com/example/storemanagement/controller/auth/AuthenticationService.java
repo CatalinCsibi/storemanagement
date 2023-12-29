@@ -1,6 +1,7 @@
 package com.example.storemanagement.controller.auth;
 
 import com.example.storemanagement.config.JwtService;
+import com.example.storemanagement.exception.UserAlreadyRegisteredException;
 import com.example.storemanagement.model.user.Role;
 import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
@@ -15,12 +16,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
+        userRepository.findByEmail(request.getEmail())
+                .ifPresent(existingProduct -> {
+                    throw new UserAlreadyRegisteredException("User with email %s is already registered", request.getEmail());
+                });
+
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -29,7 +36,7 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
 
-        repository.save(user);
+        userRepository.save(user);
 
         var jwtToken = jwtService.generateToken(user);
 
@@ -44,7 +51,7 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
-        var user = repository.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         var jwtToken = jwtService.generateToken(user);
 

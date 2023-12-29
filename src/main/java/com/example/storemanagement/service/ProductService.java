@@ -35,6 +35,7 @@ public class ProductService {
     }
 
     public List<ProductDto> findAllProducts() {
+        log.info("Finding all products.");
         List<Product> products = productRepository.findAll();
 
         return products.stream()
@@ -43,6 +44,7 @@ public class ProductService {
     }
 
     public void deleteProduct(String name) {
+        log.info("Deleting product with name: {}", name);
         productRepository.findByName(name).ifPresentOrElse(
                 productRepository::delete,
                 () ->
