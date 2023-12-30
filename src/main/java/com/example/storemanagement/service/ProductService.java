@@ -44,6 +44,8 @@ public class ProductService {
     }
 
     public ProductDto updateProduct(ProductDto productDto) {
+        log.info("Updating product with name {}", productDto.getName());
+
         productRepository.findByName(productDto.getName()).ifPresentOrElse(
                 product -> {
                     product.setDescription(productDto.getDescription());

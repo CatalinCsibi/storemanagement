@@ -17,7 +17,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -101,7 +100,6 @@ public class ProductServiceUnitTest {
 
     @Test
     public void testUpdateProductFailureWhenProductWasNotFound() {
-
         when(productRepository.findByName(any())).thenReturn(Optional.empty());
 
         assertThrows(ProductNotRegisteredException.class, () -> {
@@ -109,10 +107,29 @@ public class ProductServiceUnitTest {
         });
 
         verify(productRepository, times(1)).findByName(any());
-
     }
 
+    @Test
+    public void testDeleteProductWithSuccess() {
+        when(productRepository.findByName(any())).thenReturn(Optional.ofNullable(getProduct()));
 
+        productService.deleteProduct("product");
+
+        verify(productRepository, times(1)).delete(any());
+    }
+
+    @Test
+    public void testDeleteProductFailureWhenProductWasNotFound() {
+        when(productRepository.findByName(any())).thenReturn(Optional.empty());
+
+        assertThrows(ProductNotRegisteredException.class, () -> {
+            productService.deleteProduct(anyString());
+        });
+
+        verify(productRepository, times(1)).findByName(any());
+        verify(productRepository, times(0)).delete(any());
+
+    }
 
     private Product getProduct() {
         return Product.builder()
