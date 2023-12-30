@@ -1,6 +1,5 @@
 package com.example.storemanagement.controller;
 
-import com.example.storemanagement.dto.ProductDto;
 import com.example.storemanagement.dto.UserDto;
 import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.service.AdminService;
