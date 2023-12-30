@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.example.storemanagement.utils.AdminTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -103,49 +104,4 @@ public class AdminServiceUnitTest {
         verify(userRepository, times(0)).delete(any());
     }
 
-    private User getAdmin() {
-        return User.builder()
-                .id(1)
-                .firstName("first")
-                .lastName("last")
-                .email("first@mail.com")
-                .password("password")
-                .role(Role.ADMIN)
-                .build();
-    }
-
-    private User getUser() {
-        return User.builder()
-                .id(2)
-                .firstName("second")
-                .lastName("last2")
-                .email("second@mail.com")
-                .password("password2")
-                .role(Role.USER)
-                .build();
-    }
-
-    private UserDto getUserDto() {
-        return UserDto.builder()
-                .firstName("first")
-                .lastName("last")
-                .email("first@mail.com")
-                .build();
-    }
-
-    private UserDto getSecondUserDto() {
-        return UserDto.builder()
-                .firstName("second")
-                .lastName("last2")
-                .email("second@mail.com")
-                .build();
-    }
-
-    private List<User> getListOfUsers() {
-        return List.of(getAdmin(), getUser());
-    }
-
-    private List<UserDto> getListOfUserDto() {
-        return List.of(getUserDto(), getSecondUserDto());
-    }
 }

@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.storemanagement.utils.ProductTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -129,47 +130,5 @@ public class ProductServiceUnitTest {
         verify(productRepository, times(1)).findByName(any());
         verify(productRepository, times(0)).delete(any());
 
-    }
-
-    private Product getProduct() {
-        return Product.builder()
-                .id(23)
-                .name("product")
-                .description("used for something")
-                .price(123.45)
-                .build();
-    }
-
-    private Product getSecondProduct() {
-        return Product.builder()
-                .id(1)
-                .name("product2")
-                .description("used for something else")
-                .price(543.21)
-                .build();
-    }
-
-    private ProductDto getProductDto() {
-        return ProductDto.builder()
-                .name("product")
-                .description("used for something")
-                .price(123.45)
-                .build();
-    }
-
-    private ProductDto getSecondProductDto() {
-        return ProductDto.builder()
-                .name("product2")
-                .description("used for something else")
-                .price(543.21)
-                .build();
-    }
-
-    private List<Product> getListOfProducts() {
-        return List.of(getProduct(), getSecondProduct());
-    }
-
-    private List<ProductDto> getListOfProductDtos() {
-        return List.of(getProductDto(), getSecondProductDto());
     }
 }
