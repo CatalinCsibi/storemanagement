@@ -29,6 +29,12 @@ public class ProductController {
         return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
+        var updatedProduct = productService.updateProduct(productDto);
+        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("name") String name) {
         productService.deleteProduct(name);

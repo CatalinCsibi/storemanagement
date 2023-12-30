@@ -43,6 +43,20 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public ProductDto updateProduct(ProductDto productDto) {
+        productRepository.findByName(productDto.getName()).ifPresentOrElse(
+                product -> {
+                    product.setDescription(productDto.getDescription());
+                    product.setPrice(productDto.getPrice());
+                },
+                () ->
+                {
+                    throw new ProductNotRegisteredException("Product with name %s, is not registered in our database", productDto.getName());
+                }
+        );
+        return productDto;
+    }
+
     public void deleteProduct(String name) {
         log.info("Deleting product with name: {}", name);
         productRepository.findByName(name).ifPresentOrElse(
