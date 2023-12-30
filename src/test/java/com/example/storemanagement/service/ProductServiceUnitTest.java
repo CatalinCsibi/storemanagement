@@ -96,7 +96,6 @@ public class ProductServiceUnitTest {
         verify(productRepository, times(1)).findByName(any());
         verify(productRepository, times(1)).save(any());
         assertEquals(expectedProductDto, actualProductDto);
-
     }
 
     @Test

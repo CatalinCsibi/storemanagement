@@ -1,13 +1,10 @@
 package com.example.storemanagement.service;
 
 import com.example.storemanagement.dto.UserDto;
-import com.example.storemanagement.exception.ProductNotRegisteredException;
 import com.example.storemanagement.exception.UserAlreadyRegisteredException;
 import com.example.storemanagement.exception.UserNotRegisteredException;
 import com.example.storemanagement.mapper.UserMapper;
 import com.example.storemanagement.mapper.UserMapperImpl;
-import com.example.storemanagement.model.user.Role;
-import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +17,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.example.storemanagement.utils.AdminTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
