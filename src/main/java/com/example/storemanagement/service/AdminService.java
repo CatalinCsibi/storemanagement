@@ -2,8 +2,11 @@ package com.example.storemanagement.service;
 
 import com.example.storemanagement.dto.UserDto;
 import com.example.storemanagement.exception.ProductAlreadyRegisteredException;
+import com.example.storemanagement.exception.ProductNotRegisteredException;
 import com.example.storemanagement.exception.UserAlreadyRegisteredException;
+import com.example.storemanagement.exception.UserNotRegisteredException;
 import com.example.storemanagement.mapper.UserMapper;
+import com.example.storemanagement.model.Product;
 import com.example.storemanagement.model.user.Role;
 import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
@@ -11,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +46,25 @@ public class AdminService {
         userRepository.save(user);
 
         return userMapper.userToUserDto(admin);
+    }
 
+    public List<UserDto> findAllUsers() {
+        log.info("Finding all users.");
+        List<User> users = userRepository.findAll();
+
+        return users.stream()
+                .map(userMapper::userToUserDto)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteUser(String email) {
+        log.info("Deleting user with email: {}", email);
+        userRepository.findByEmail(email).ifPresentOrElse(
+                userRepository::delete,
+                () ->
+                {
+                    throw new UserNotRegisteredException("User with email %s, is not registered in our database", email);
+                }
+        );
     }
 }

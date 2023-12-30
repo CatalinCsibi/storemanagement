@@ -33,6 +33,5 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable("name") String name) {
         productService.deleteProduct(name);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 }

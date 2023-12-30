@@ -1,9 +1,6 @@
 package com.example.storemanagement.exception.handler;
 
-import com.example.storemanagement.exception.ErrorTypeEnum;
-import com.example.storemanagement.exception.ProductAlreadyRegisteredException;
-import com.example.storemanagement.exception.ProductNotRegisteredException;
-import com.example.storemanagement.exception.UserAlreadyRegisteredException;
+import com.example.storemanagement.exception.*;
 import com.example.storemanagement.exception.model.ApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,6 +41,16 @@ public class RestExceptionHandler {
         log.info("The following exception occurred: " + exception);
 
         ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.USER_ALREADY_REGISTERED,
+                exception.getMessage(), BAD_REQUEST);
+
+        return new ResponseEntity<>(apiError, BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UserNotRegisteredException.class)
+    public ResponseEntity<ApiError> handle(final UserNotRegisteredException exception) {
+        log.info("The following exception occurred: " + exception);
+
+        ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.USER_NOT_REGISTERED,
                 exception.getMessage(), BAD_REQUEST);
 
         return new ResponseEntity<>(apiError, BAD_REQUEST);
