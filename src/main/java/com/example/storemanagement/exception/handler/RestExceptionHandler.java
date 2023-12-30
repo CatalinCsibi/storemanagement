@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Slf4j
 @RestControllerAdvice
@@ -31,7 +32,7 @@ public class RestExceptionHandler {
         log.info("The following exception occurred: " + exception);
 
         ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.PRODUCT_NOT_REGISTERED,
-                exception.getMessage(), BAD_REQUEST);
+                exception.getMessage(), NOT_FOUND);
 
         return new ResponseEntity<>(apiError, BAD_REQUEST);
     }
@@ -51,7 +52,7 @@ public class RestExceptionHandler {
         log.info("The following exception occurred: " + exception);
 
         ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.USER_NOT_REGISTERED,
-                exception.getMessage(), BAD_REQUEST);
+                exception.getMessage(), NOT_FOUND);
 
         return new ResponseEntity<>(apiError, BAD_REQUEST);
     }
