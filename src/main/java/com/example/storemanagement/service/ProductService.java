@@ -48,6 +48,7 @@ public class ProductService {
                 product -> {
                     product.setDescription(productDto.getDescription());
                     product.setPrice(productDto.getPrice());
+                    productRepository.save(product);
                 },
                 () ->
                 {

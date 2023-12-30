@@ -38,6 +38,6 @@ public class ProductController {
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("name") String name) {
         productService.deleteProduct(name);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

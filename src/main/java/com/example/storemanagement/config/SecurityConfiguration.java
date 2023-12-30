@@ -31,7 +31,8 @@ public class SecurityConfiguration {
                                 .permitAll()
                                 .requestMatchers("/api/product/findAll")
                                 .hasAnyAuthority("USER", "ADMIN")
-                                .requestMatchers("/api/product/add", "/api/product/delete", "/api/admin/**")
+                                .requestMatchers("/api/product/add", "/api/product/delete/**",
+                                        "/api/product/update","/api/admin/**")
                                 .hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()

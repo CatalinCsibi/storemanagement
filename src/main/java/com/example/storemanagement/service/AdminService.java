@@ -31,7 +31,7 @@ public class AdminService {
         log.info("Adding new admin with name: ");
 
         userRepository.findByEmail(user.getEmail())
-                .ifPresent(existingProduct -> {
+                .ifPresent(existingUser -> {
                     throw new UserAlreadyRegisteredException("User with email %s is already registered", user.getEmail());
                 });
 
@@ -40,10 +40,10 @@ public class AdminService {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .password(passwordEncoder.encode(user.getPassword()))
-                .role(Role.USER)
+                .role(Role.ADMIN)
                 .build();
 
-        userRepository.save(user);
+        userRepository.save(admin);
 
         return userMapper.userToUserDto(admin);
     }
