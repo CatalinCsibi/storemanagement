@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{email}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("email") String email) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("email") String email) {
         adminService.deleteUser(email);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

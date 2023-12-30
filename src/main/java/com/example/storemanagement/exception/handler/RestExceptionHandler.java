@@ -34,7 +34,7 @@ public class RestExceptionHandler {
         ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.PRODUCT_NOT_REGISTERED,
                 exception.getMessage(), NOT_FOUND);
 
-        return new ResponseEntity<>(apiError, BAD_REQUEST);
+        return new ResponseEntity<>(apiError, NOT_FOUND);
     }
 
     @ExceptionHandler(UserAlreadyRegisteredException.class)
@@ -54,7 +54,7 @@ public class RestExceptionHandler {
         ApiError apiError = buildApiErrorResponse(ErrorTypeEnum.USER_NOT_REGISTERED,
                 exception.getMessage(), NOT_FOUND);
 
-        return new ResponseEntity<>(apiError, BAD_REQUEST);
+        return new ResponseEntity<>(apiError, NOT_FOUND);
     }
 
     private ApiError buildApiErrorResponse(ErrorTypeEnum errorType, String message, HttpStatus status) {
