@@ -1,12 +1,9 @@
 package com.example.storemanagement.service;
 
 import com.example.storemanagement.dto.UserDto;
-import com.example.storemanagement.exception.ProductAlreadyRegisteredException;
-import com.example.storemanagement.exception.ProductNotRegisteredException;
 import com.example.storemanagement.exception.UserAlreadyRegisteredException;
 import com.example.storemanagement.exception.UserNotRegisteredException;
 import com.example.storemanagement.mapper.UserMapper;
-import com.example.storemanagement.model.Product;
 import com.example.storemanagement.model.user.Role;
 import com.example.storemanagement.model.user.User;
 import com.example.storemanagement.repository.UserRepository;
