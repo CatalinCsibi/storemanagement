@@ -4,7 +4,7 @@ The application structure contains:
 Two Entities Product and User.
 Two Repositories ProductRepository and UserRepository. 
 Two services, ProductService and AdminService.
-Three RestControllers, ProductController, AdminController and AuthenticationController.
+Three RestControllers: ProductController, AdminController and AuthenticationController.
 
 ProductController has Get, Post and Delete Requests which based on the role that the user has, may, or may not be accessible.
 AdminController has Get, Post and Delete Requests that are only accessible to users with the Admin role.
